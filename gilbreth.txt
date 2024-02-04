@@ -1,0 +1,160 @@
+module load anaconda/2020.11-py38
+module load cuda/11.2.0
+module load cudnn/cuda-11.2_8.1
+source activate py38cu11
+
+
+jupyter nbconvert --to script notebook.ipynb
+
+source activate rapids-23.04
+conda-env-mod kernel -n rapids-23.04 --display-name "rapids-23.04"
+jupyter kernelspec uninstall rapids-23.04
+
+conda activate py38cu11
+conda update -n base -c defaults conda
+conda create --name py38cu11 python=3.8
+
+conda remove --name py38cu11 --all
+
+conda-env-mod kernel -n py38cu11 --display-name "py38cu11"
+
+conda install ipython
+conda install ipykernel
+
+jupyter kernelspec uninstall py38cu11
+
+python -m ipykernel install --user --name=py38cu11 --display-name "py38cu11"
+python -m ipykernel install --user --name=py38cu11new --display-name "py38cu11new"
+jupyter kernelspec uninstall py38cu11new
+
+conda info --envs
+
+
+Installations
+pip install pandas
+pip install tqdm
+pip install ipywidgets
+pip install IProgress
+pip install matplotlib
+pip install ipynb
+pip install networkx
+
+
+
+-------Worked--------
+pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+
+pip install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
+pip install --no-index torch-sparse -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
+pip install --no-index torch-cluster -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
+pip install --no-index torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
+pip install torch-geometric==2.0.4
+
+
+-------Didn't Work for multiple worker--------
+
+pip install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+pip install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.9.1+cu111.html
+pip install --no-index torch-sparse -f https://pytorch-geometric.com/whl/torch-1.9.1+cu111.html
+pip install --no-index torch-cluster -f https://pytorch-geometric.com/whl/torch-1.9.1+cu111.html
+pip install --no-index torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.9.1+cu111.html
+pip install torch-geometric
+
+------ requires glib 2.27------
+pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+
+
+pip install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.12.1+cu113.html
+pip install --no-index torch-sparse -f https://pytorch-geometric.com/whl/torch-1.12.1+cu113.html
+pip install --no-index torch-cluster -f https://pytorch-geometric.com/whl/torch-1.12.1+cu113.html
+pip install --no-index torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.12.1+cu113.html
+pip install torch-geometric
+
+------didn't work------
+
+For PyTorch geometric torch 1.9 is necessary
+
+pip install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.9.0+cu111.html
+
+
+pip install torch-scatter -f https://data.pyg.org/whl/torch-1.9.1+cu113.html
+pip install torch-sparse -f https://data.pyg.org/whl/torch-1.9.1+cu113.html
+pip install torch-cluster -f https://data.pyg.org/whl/torch-1.9.1+cu113.html
+pip install torch-spline-conv -f https://data.pyg.org/whl/torch-1.9.1+cu113.html
+pip install torch-geometric -f https://data.pyg.org/whl/torch-1.9.1+cu113.html
+
+
+pip install torch-scatter -f https://data.pyg.org/whl/torch-1.9.0+cu111.html
+pip install torch-sparse -f https://data.pyg.org/whl/torch-1.9.0+cu111.html
+pip install torch-cluster -f https://data.pyg.org/whl/torch-1.9.0+cu111.html
+pip install torch-spline-conv -f https://data.pyg.org/whl/torch-1.9.0+cu111.html
+pip install torch-geometric -f https://data.pyg.org/whl/torch-1.9.0+cu111.html
+
+pip install torch-sparse --no-cache-dir -f https://data.pyg.org/whl/torch-1.10.2+cu111.html
+
+ --verbose --no-cache-dir torch-scatter
+
+
+conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+
+pip install torch-scatter==latest+cu111 -f https://pytorch-geometric.com/whl/torch-1.9.1.html
+pip install torch-sparse==latest+cu111 -f https://pytorch-geometric.com/whl/torch-1.9.1.html
+pip install torch-cluster==latest+cu111 -f https://pytorch-geometric.com/whl/torch-1.9.1.html
+pip install torch-spline-conv==latest+cu111 -f https://pytorch-geometric.com/whl/torch-1.9.1.html
+pip install torch-geometric
+
+
+pip install torch-scatter -f https://data.pyg.org/whl/torch-1.9.1+11.html
+pip install torch-sparse -f https://data.pyg.org/whl/torch-1.9.1+11.html
+pip install torch-geometric
+
+
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.12.0+cu113.html
+
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.9.1+cu111.html
+
+pip install torch-cluster -f https://data.pyg.org/whl/torch-1.12.0+cu113.html
+pip install torch-spline-conv -f https://data.pyg.org/whl/torch-1.12.0+cu113.html
+
+pip install torch-geometric -f https://data.pyg.org/whl/torch-1.12.0+cu116.html
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.12.1+cu116.html
+
+
+
+pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.10.1+cu111.html
+
+
+pip uninstall torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+
+pip uninstall torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.11.0+cu102.html
+
+
+conda uninstall pytorch torchvision torchaudio cudatoolkit
+conda uninstall torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+
+
+pip uninstall torch torchvision torchaudio
+pip uninstall torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+
+
+pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+
+https://github.com/pyg-team/pytorch_geometric/issues/3593
+
+ WARNING: The scripts convert-caffe2-to-onnx, convert-onnx-to-caffe2 and torchrun are installed in '/home/das90/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+
+
+conda create -n rapids-23.04 -c rapidsai -c conda-forge -c nvidia  \
+    cuml=23.04 python=3.8 cudatoolkit=11.2
+
+jupyter nbconvert --to script notebook.ipynb
