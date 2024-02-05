@@ -128,11 +128,19 @@ Some example methods are,
 
 - `GNNs/AGS-NS-GSAGEorGIN.py` will run AGS-GNN with GraphSAGE or Graph Isomorphic Network (GIN)
 
--  `GNNs/AGS-NS-GSAGE-CHEB.ipynb` will use dual channel with GraphSAGE for homophily and Chevnet for heterophily
+-  `GNNs/AGS-NS-GSAGE-CHEB.ipynb` will use dual channel with GraphSAGE for homophily and ChebNet for heterophily
 
 -  `GNNs/AGS-NS-Ablation.ipynb` performs single channel, dual channel ablation studies on synthetic and benchmark datasets. In the `Class AGSGNN` change appropriate model and in the sampler settings apply any sampling strategies to create any possible variations.
 
 Check the `GNNs` folder for all other detailed implementations.
+
+
+
+## Some other optional scripts are:
+
+- `Submodular/EffectiveResistanceWeights.ipynb` can be used to compute effective resistance based edge weights when node features are not avaiable. The sampler will take spectral sparsifier of the graph.
+
+- `Submodular/SpatialConv.ipynb` is the GraphLaplacian inspired message passing convution operation. Based on this, we design `AGS-GCN` with `GCNConv` and `SpatialConv` for dual channel. The model is given at `Submodular/AGSConv.ipynb`
 
 
 
