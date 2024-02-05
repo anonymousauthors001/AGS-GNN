@@ -2,16 +2,16 @@
 ## AGS-GNN: Attribute-guided Sampling for Graph Neural Network
 
 
-### Our Cuda C++ implementation of Weighted Neighborhood Sampler is the modification of ```torch-sparse==0.6.12``` of neighborhood sampler.
+### Our Cuda C++ implementation of Weighted Neighborhood Sampler 
 
-The original random sampler,
+We modified the ```torch-sparse==0.6.12``` for neighborhood sampler. The original random sampler,
 
 ```
 https://github.com/rusty1s/pytorch_sparse/tree/master/csrc
 https://github.com/rusty1s/pytorch_sparse/blob/master/csrc/cpu/neighbor_sample_cpu.cpp
 ```
 
-In the folder ```CPPSamplerPy``` we modifed the torch-sparse libaries to adopt ```weight neighborhood sampler``` and ```weighted random walk``.
+In the folder ```CPPSamplerPy``` we modifed the ```torch-sparse``` libaries to adopt weighted neighborhood sampler and weighted random walk.
 
 The compiled shared library is ``` ``` needs to be loaded. You can compile to work in you own enviroment using the ```g++``` and provided ```MakeFile```
 
