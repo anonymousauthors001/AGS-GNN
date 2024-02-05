@@ -1,0 +1,7 @@
+add_executable(test test_app.cc)
+target_compile_features(test PRIVATE cxx_std_14)
+target_compile_options(test PRIVATE -O3 )
+target_link_libraries(test PUBLIC wsample)
+message(Torch libraries="${TORCH_LIBRARIES}")
+target_link_libraries(test PUBLIC ${TORCH_LIBRARIES})
+target_include_directories(test PUBLIC "${PROJECT_SOURCE_DIR}/include")
