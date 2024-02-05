@@ -4,28 +4,28 @@
 
 ### Our Cuda C++ implementation of Weighted Neighborhood Sampler 
 
-We modified the ```torch-sparse==0.6.12``` for neighborhood sampler. The original random sampler,
+We modified the `torch-sparse==0.6.12` for neighborhood sampler. The original random sampler,
 
 ```
 https://github.com/rusty1s/pytorch_sparse/tree/master/csrc
 https://github.com/rusty1s/pytorch_sparse/blob/master/csrc/cpu/neighbor_sample_cpu.cpp
 ```
 
-In the folder ```CPPSamplerPy``` we modifed the ```torch-sparse``` libaries to adopt weighted neighborhood sampler and weighted random walk.
+In the folder `CPPSamplerPy` we modifed the `torch-sparse` libaries to implement weighted neighborhood sampler and weighted random walk.
 
-The compiled shared library is ``` ``` needs to be loaded. You can compile to work in you own enviroment using the ```g++``` and provided ```MakeFile```
+The compiled shared library needs to be loaded. You can compile to work in you own enviroment using the `g++` and provided `MakeFile`
 
-In cases if it doesn't work, you can use slightly slower version of these sampler of python implementation by changing the weighted sampler call function in ```AGSNodeSampler.py``` and ```AGSGraphSampler.py```.
+In cases if it doesn't work, you can use slightly slower version of these sampler of python implementation by changing the weighted sampler call function in `AGSNodeSampler.py` and `AGSGraphSampler.py`.
 
 ### Utitlies
-In the ```Submodular``` folder we have utitlies function to load dataset, similarity ranking, submodular ranking, and all other utitlies function implementation
+In the `Submodular` folder we have utitlies function to load dataset, similarity ranking, submodular ranking, and all other utitlies function implementation
 
 
 ### Execution of AGS-GNN
 
 In the experiment folder we have implementation of AGS-GNN and other methods.
 
-e.g. ```AGS-NS-GSAGEorGIN.py```
+e.g. `AGS-NS-GSAGEorGIN.py`
 
 
 ## Installation
@@ -42,7 +42,7 @@ Other necessary commands for managing enviroment can be found here : [https://do
 ### Installation of pacakages
 The installations are considered for python version 3.7
 
-Most python packages are intalled using ```pip``` or ```conda``` command. For consistency it's better to follow only one of them. If anaconda not available install packages in python base using ```pip``` command.
+Most python packages are intalled using `pip` or `conda` command. For consistency it's better to follow only one of them. If anaconda not available install packages in python base using `pip` command.
 
 #### Pytorch
 
@@ -53,11 +53,11 @@ If Pytorch is already installed then this is not necessary.
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 ```
 
-#### Package `ipynb ` for calling one python functions from another Jupyter notebook file
+#### Package `ipynb` for calling one python functions from another Jupyter notebook file
 
 ```pip install ipynb```
 
-#### ```PytorchGeometric``` Version 2.0.4 is used and installation
+#### `PytorchGeometric` Version 2.0.4 is used and installation
 
 
 ```
