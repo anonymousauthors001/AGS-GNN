@@ -1,7 +1,7 @@
 
 ## AGS-GNN: Attribute-guided Sampling for Graph Neural Network
 
-primary libraries used for implementation are `Pytorch`, `PytorchGeometric`, `DeepGraphLibrary (DGL)`, `Apricot`.
+primary libraries used for implementation are `Pytorch-1.9.0`, `PytorchGeometric-2.0.4`, `DeepGraphLibrary (DGL)-latest`, `Apricot-latest`.
 
 
 ## Installation
@@ -60,17 +60,34 @@ From the conda environment pip packages exported using
 
 
 
-# How to Run AGS-GNN
+# Running AGS-GNN
 
-## Dataset
+### Dataset
 
-File `Submodular/Dataset.py`
+Check file `Submodular/Dataset.ipynb` to see how dataset are loaded.
 
-### Utitlies
-In the `Submodular` folder we have utitlies function to load dataset, similarity ranking, submodular ranking, and all other utitlies function implementation
+### Ranking
+
+In the `Submodular` folder we have utitlies function to load dataset, similarity ranking, submodular ranking, and all other utitlies function implementation. These files can be run standalone and you can test on dataset to see how they work.
+
+- `Submodular/KNNWeights.ipynb` for nearest neighbor based feature similarity ranking
+
+- `Submodular/SubmodularWeights.ipynb` for submodular optimization based diversity ranking 
 
 
-#### Our Cuda C++ implementation of Weighted Neighborhood Sampler 
+- `Submodular/PretrainedLinkFast.ipynb` is the regression model to train and learn edge weights or learn similarity function
+
+
+
+### Samplers: Node Sampler and Graph Samplers
+
+Check the standalone samplers and run it on the dataset to create batches to make sure your system is working properly.
+
+- `Submodular/AGSNodeSampler.ipynb` is for weighted node sampling, we can create multiple batches with different types of samples.
+
+- `Submodular/AGSGraphSampler.ipynb` is for weighted graph sampling, we can create multiple batches with different types of graph sampling.
+
+#### PS: We used Cuda C++ implementation of Weighted Neighborhood Sampler 
 
 We modified the `torch-sparse==0.6.12` for neighborhood sampler. The original random sampler,
 
@@ -83,14 +100,39 @@ In the folder `CPPSamplerPy` we modifed the `torch-sparse` libaries to implement
 
 The compiled shared library needs to be loaded. You can compile to work in you own enviroment using the `g++` and provided `MakeFile`
 
-In cases if it doesn't work, you can use slightly slower version of these sampler of python implementation by changing the weighted sampler call function in `AGSNodeSampler.py` and `AGSGraphSampler.py`.
+In cases if it doesn't work, you can use slightly slower version of these sampler of python implementation by changing the weighted sampler call function in `AGSNodeSampler.ipynb` and `AGSGraphSampler.ipynb`.
+
+For example, in the `AGSNodeSampler.ipynb` you can comment and uncomment these lines to use `C++` or `Python` based implementation.
+
+```
+def __call__(self, index: Union[List[int], Tensor]):
+        
+        output = []
+    
+        for i,method in enumerate(self.weight_funcs):
+            if method == 'random':
+                output.append(self.call__original(index)
+            else:
+                #output.append(self.weighted_sample(index, i)) ##python sparse tensor based implementation
+                #output.append(self.call_weighted_sample(index, i)) ## c inspired python implementation
+                output.append(self.call_weighted_sample_cpp(index, i)) ## modified c++ installation 
+        return output            
+```
 
 
 ## Executing Jupyter notebook and Python Script of AGS-GNN
 
-In the experiment folder we have implementation of AGS-GNN and other methods.
+Once you make sure, the Dataset, Ranking Codes, and Samplers are working. In the experiment folder we have implementation of AGS-GNN and other methods. 
 
-e.g. `AGS-NS-GSAGEorGIN.py`
+Some example methods are,
+
+- `GNNs/AGS-NS-GSAGEorGIN.py` will run AGS-GNN with GraphSAGE or Graph Isomorphic Network (GIN)
+
+-  `GNNs/AGS-NS-GSAGE-CHEB.ipynb` will use dual channel with GraphSAGE for homophily and Chevnet for heterophily
+
+-  `GNNs/AGS-NS-Ablation.ipynb` performs single channel, dual channel ablation studies on synthetic and benchmark datasets. In the `Class AGSGNN` change appropriate model and in the sampler settings apply any sampling strategies to create any possible variations.
+
+Check the `GNNs` folder for all other detailed implementations.
 
 
 
