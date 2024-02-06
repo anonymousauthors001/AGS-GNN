@@ -126,11 +126,17 @@ Once you make sure, the Dataset, Ranking Codes, and Samplers are working. In the
 
 Some example methods are,
 
+- `GNNs/AGS-NS.py` will run AGS-GNN with Node Sampling
+
+- `GNNs/AGS-GS-GSAINT.py` and `GNNs/AGS-GS-GSAINT-II.py` will run AGS-GNN with single and dual channel Graph Sampling with underlying GraphSAINT , in the sampling paradigm you can specify, to apply weighted random walk or disjoint graph samping.
+
+-  `GNNs/AGS-NS-Ablation.ipynb` performs single channel, dual channel ablation studies on synthetic and benchmark datasets. In the `Class AGSGNN` change appropriate model and in the sampler settings apply any sampling strategies to create any possible variations.
+
+
 - `GNNs/AGS-NS-GSAGEorGIN.py` will run AGS-GNN with GraphSAGE or Graph Isomorphic Network (GIN)
 
 -  `GNNs/AGS-NS-GSAGE-CHEB.ipynb` will use dual channel with GraphSAGE for homophily and ChebNet for heterophily
 
--  `GNNs/AGS-NS-Ablation.ipynb` performs single channel, dual channel ablation studies on synthetic and benchmark datasets. In the `Class AGSGNN` change appropriate model and in the sampler settings apply any sampling strategies to create any possible variations.
 
 Check the `GNNs` folder for all other detailed implementations.
 
